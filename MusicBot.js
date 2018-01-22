@@ -187,8 +187,10 @@ function play(guild, song) {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
 			serverQueue.songs.shift();
-			play(guild, serverQueue.songs[0]);
-		})
+                setTimeout(function() {
+                  play(guild, serverQueue.songs[0]);
+                }, 500);
+            })
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
